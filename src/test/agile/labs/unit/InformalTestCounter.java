@@ -22,5 +22,10 @@ public static void main(String[] args)
 	    if (result != 0) {
 	        System.out.println("Boundry case failed");
 	    }
+	    
+	    counter.step(3);
+	    if (result > limit){
+	    	System.out.println("Step Method Failed");
+	    }
     }
 }

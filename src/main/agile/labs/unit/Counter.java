@@ -19,4 +19,13 @@ public class Counter {
         }
         return value ;
     }
+    
+    public int step(int amount) {
+    	value = value + amount;
+    	while(value > limit)
+    	{
+    		value = limit - value;
+    	}
+    	return value;
+    }
 }
