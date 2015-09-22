@@ -21,11 +21,12 @@ public class Counter {
     }
     
     public int step(int amount) {
-    	value = value + amount;
-    	while(value > limit)
-    	{
-    		value = limit - value;
-    	}
-    	return value;
+        int diff = (value + amount) % limit ;
+        if ( diff > 0) {  
+            value = diff;
+        } else {
+            value += amount; 
+        }
+        return value ;
     }
 }
