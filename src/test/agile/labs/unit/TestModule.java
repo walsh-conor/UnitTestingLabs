@@ -59,4 +59,18 @@ public class TestModule extends TestCase {
         result = module.findTopic("topic 4");
         assertNull("Invalid topic found incorrectly",result) ;
     }
+    
+    public void testchangeTopic() {
+        // Normal cases
+        module.addTopic(topic1) ;
+        module.addTopic(topic2) ; 
+        module.addTopic(topic3) ; 
+        Topic changes = new Topic(8,"topic 4");
+        Topic result = module.changeTopic("topic 2", changes);
+        assertEquals("Change topic - wrong name",changes.getName(),result.getName());
+        assertEquals("Change topic - wrong no. lectures",changes.getNoLectures() ,
+                                                         result.getNoLectures());
+        Topic findResult = module.findTopic( changes.getName()); 
+        assertSame("Change topic - not added to topic list",result,findResult);
+    }
 }

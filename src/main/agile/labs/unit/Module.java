@@ -44,4 +44,46 @@ import java.util.Vector;
         }
         return result;
     }
+    
+    public Topic changeTopic(String name, Topic changes) {
+        Topic currentTopic = findTopic(name); 
+        Topic newTopic = new Topic(changes.getNoLectures(), changes.getName());
+        removeTopic(currentTopic.getName() );
+        addTopic(newTopic) ;
+        return newTopic;
+    }
+    
+    public Topic removeTopic(String name) {
+        Topic result = findTopic(name) ;
+        if (result != null) {
+            topics.remove(result) ;
+        }
+        return result;
+    }
+
+    public Topic mergeTopics(String name1, String name2,String nemName) {
+        Topic merged = null;
+        Topic topic1 = findTopic(name1) ;
+        Topic topic2 = findTopic(name2) ;
+        if ( topic1 != null && topic2 != null) {
+            merged = new Topic( 
+                    (topic1.getNoLectures() + topic2.getNoLectures()),
+                    nemName);
+            removeTopic(topic1.getName());
+            removeTopic(topic2.getName());
+            addTopic(merged);
+        }
+      return merged;
+    }
+
+    private Boolean checkNameClash(String name) {
+        Boolean result = true ;
+        for (Topic t : topics) {
+            if (t.getName().equalsIgnoreCase(name)) {
+                result = false ;
+                break ;
+            }
+        }
+        return result ;
+     }
 }
