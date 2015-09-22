@@ -47,7 +47,12 @@ import java.util.Vector;
     
     public Topic changeTopic(String name, Topic changes) {
         Topic currentTopic = findTopic(name); 
-        Topic newTopic = new Topic(changes.getNoLectures(), changes.getName());
+        Topic newTopic = null ;
+        if (changes.getNoLectures() <= 0) {
+            newTopic = new Topic(currentTopic.getNoLectures(), changes.getName());
+        } else {
+            newTopic = new Topic(changes.getNoLectures(), changes.getName());
+        }
         removeTopic(currentTopic.getName() );
         addTopic(newTopic) ;
         return newTopic;

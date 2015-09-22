@@ -72,5 +72,13 @@ public class TestModule extends TestCase {
                                                          result.getNoLectures());
         Topic findResult = module.findTopic( changes.getName()); 
         assertSame("Change topic - not added to topic list",result,findResult);
+        
+     // Name only change
+        changes = new Topic(0,"topic 5");
+        result = module.changeTopic("topic 4", changes);
+        assertEquals("Change topic name only - wrong name",changes.getName(),result.getName());
+        assertEquals("Change topic name only - wrong no. lectures", 8, result.getNoLectures());
+        findResult = module.findTopic( changes.getName()); 
+        assertSame("Change topic name only - not added to topic list",result,findResult);
     }
 }
